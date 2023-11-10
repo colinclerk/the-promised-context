@@ -1,6 +1,5 @@
 "use client";
-
-import { createContext } from "react";
+import { createContext, use, useContext } from "react";
 
 export const PromisedContext = createContext<Promise<string | null>>(
   Promise.resolve(null)
@@ -18,4 +17,9 @@ export const PromisedContextProvider = ({
       {children}
     </PromisedContext.Provider>
   );
+};
+
+export const UserAgent = () => {
+  const userAgent = use(useContext(PromisedContext));
+  return <div>{userAgent}</div>;
 };
